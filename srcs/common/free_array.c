@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 10:38:18 by scarboni          #+#    #+#             */
-/*   Updated: 2021/09/27 14:59:02 by scarboni         ###   ########.fr       */
+/*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
+/*   Updated: 2021/10/26 20:54:38 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
-#include <unistd.h>
 
-void	ft_putchar_fd(char c, int fd)
+void	free_array(char **splitted)
 {
-	write(fd, &c, 1);
+	int	i;
+
+	i = 0;
+	while (splitted[i] != NULL)
+	{
+		free(splitted[i]);
+		splitted[i] = NULL;
+		i++;
+	}
+	free(splitted);
 }
-/*
-** #1. Le caractere a ecrire.
-** #2. Le file descriptor sur lequel ecrire.
-** Valeur de retour None
-** Fonctions externes autorisees
-** write
-** Description : ecrit le caractere 'c' sur le file descriptor
-** donne.
-*/

@@ -55,4 +55,35 @@
 # include <string.h>
 // char *strerror(int errnum);
 
+
+typedef struct s_env {
+	int		pipes_handles[2];
+	char	**envp;
+} t_env;
+
+#define FORK_ERROR 0
+#define FORK_MSG "Fork: "
+#define OPEN_FILE_ERROR 1
+#define OPEN_FILE_MSG "Error while opening a file."
+#define EXEC_ERROR 2
+#define EXEC_MSG "Error while executing a command."
+#define MAX_ERRORS 3
+
+static char *g_error_messages[MAX_ERRORS] = {
+	FORK_MSG,
+	OPEN_FILE_MSG,
+	EXEC_MSG
+};
+
+#define ID_C1 1
+#define ID_C2 0
+
+void	free_array(char **splitted);
+char	**ft_split(char const *s, char c);
+char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlcat(char *dst, const char *src, size_t dst_len_mx);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlen(const char *s);
+int		ft_strncmp(const char *s1, const char *s2, size_t len_mx);
+
 #endif

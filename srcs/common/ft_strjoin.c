@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 10:38:18 by scarboni          #+#    #+#             */
-/*   Updated: 2021/09/27 15:02:44 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/10/26 20:41:28 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
 
-static int	ft_isbetween(int c, int min, int max)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	if (c >= min && c <= max)
-		return (1);
-	return (0);
+	char	*dst;
+	size_t	size_s1;
+	size_t	size_s2;
+
+	if (!s1 || !s2)
+		return (NULL);
+	size_s1 = ft_strlen(s1);
+	size_s2 = ft_strlen(s2);
+	dst = (char *)malloc((size_s1 + size_s2 + 1) * sizeof(char));
+	if (dst == NULL)
+		return (NULL);
+	ft_strlcpy(dst, s1, size_s1 + 1);
+	ft_strlcat(dst, s2, size_s1 + size_s2 + 1);
+	return (dst);
 }
 
-int	ft_isdigit(int c)
-{
-	return (ft_isbetween(c, '0', '9'));
-}
+/*
+** Alloue (avec malloc(3)) et retourne une nouvelle
+** chaine, resultat de la concatenation de s1 et s2.
+** La nouvelle chaine de caracteres. NULL si
+** l'allocation echoue.
+*/

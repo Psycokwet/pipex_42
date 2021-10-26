@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_value.c                                      :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 10:38:18 by scarboni          #+#    #+#             */
-/*   Updated: 2021/09/27 18:20:29 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/10/26 20:41:10 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
 
-int	parse_value(char const *arg, int *result)
+static size_t	ft_strnlen(const char *s, size_t len_max)
 {
-	int				tmp;
-	char			*checker;
-	unsigned int	checker_length;
+	size_t	i;
 
-	if (arg == NULL)
-		return (-EXIT_FAILURE);
-	tmp = ft_atoi(arg);
-	checker = ft_itoa(tmp);
-	checker_length = ft_strlen(checker);
-	if (!(ft_strncmp(arg, checker, checker_length) == 0 && ft_strlen(arg)
-			== checker_length))
-	{
-		free(checker);
-		return (-EXIT_FAILURE);
-	}
-	free(checker);
-	*result = tmp;
-	return (EXIT_SUCCESS);
+	i = 0;
+	while (i < len_max && s[i] != '\0')
+		i++;
+	return (i);
+}
+
+size_t	ft_strlcat(char *dst, const char *src, size_t dst_len_mx)
+{
+	size_t	dst_len;
+	size_t	dst_len_mx_updated;
+
+	dst_len = ft_strnlen(dst, dst_len_mx);
+	dst_len_mx_updated = dst_len_mx - dst_len;
+	if (dst_len_mx_updated == 0)
+		return (dst_len_mx + ft_strlen(src));
+	return (ft_strlcpy(&dst[dst_len], src, dst_len_mx_updated) + dst_len);
 }

@@ -30,16 +30,13 @@ OBJ_PATHS_INIT			=	$(addprefix $(OBJ_PATH),$(MAIN_PATH) 	\
 OBJ_PATHS_INIT			+= 	$(OBJ_PATH)
 ## No need for a \ on the last line
 HEADERS_FILES				=	main.h
-COMMON_FILES				=	ft_atoi.c \
-								ft_isdigit.c \
-								ft_itoa.c \
-								ft_putchar_fd.c \
-								ft_putnbr_fd.c \
-								ft_putstr_fd.c \
+COMMON_FILES				=	free_array.c \
+								ft_split.c \
+								ft_strjoin.c \
+								ft_strlcat.c \
+								ft_strlcpy.c \
 								ft_strlen.c \
-								ft_strncmp.c \
-								parse_value.c \
-								send.c
+								ft_strncmp.c
 
 
 SRC_FILES += $(addprefix $(MAIN_PATH), $(MAIN_FILES))

@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 10:38:18 by scarboni          #+#    #+#             */
-/*   Updated: 2021/09/27 14:53:16 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/10/26 20:41:36 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
-#include <unistd.h>
 
-void	ft_putstr_fd(char *s, int fd)
+static size_t	int_ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
+	int		i;
+
+	i = -1;
+	while (src[++i] && i < ((int)dstsize) - 1)
+		dst[i] = src[i];
+	dst[i] = '\0';
+	while (src[i])
+		i++;
+	return (i);
 }
-/*
-** #1. La chaine de caracteres a ecrire.
-** #2. Le file descriptor sur lequel ecrire.
-** Valeur de retour None
-** Fonctions externes autorisees
-** write
-** Description Ecrit la chaine de caracteres 's' sur le file
-** descriptor donne.
-*/
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	if (!src)
+		return (0);
+	if (!dst || dstsize == 0)
+		return (ft_strlen(src));
+	else
+		return (int_ft_strlcpy(dst, src, dstsize));
+}
