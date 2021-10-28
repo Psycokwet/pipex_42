@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/10/20 08:12:37 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/10/27 21:56:58 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,5 @@ int	main(int argc, char const *argv[])
 {
 	(void)argc;
 	(void)argv;
-	
 	return (EXIT_SUCCESS);
 }

@@ -21,7 +21,7 @@ ifdef WITH_BONUS
 	NAME	=	$(BONUS)
 else
 	CFLAGS	+= -DIF_BONUS=false
-	MAIN_FILES				+=	main.c
+	MAIN_FILES				+=	main.c main_int.c
 endif
 
 
