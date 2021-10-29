@@ -1,5 +1,5 @@
-NAME			=	pipex
-BONUS			=	pipex_bonus
+NAME				=	pipex
+NAME_BONUS			=	pipex_bonus
 
 BONUS 				=   bonus
 
@@ -18,7 +18,7 @@ ifdef WITH_BONUS
 
 	MAIN_FILES				+=	main_bonus.c
 	OBJ_PATH	= $(OBJ_BONUS_PATH)
-	NAME	=	$(BONUS)
+	NAME	=	$(NAME_BONUS)
 else
 	CFLAGS	+= -DIF_BONUS=false
 	MAIN_FILES				+=	main.c main_int.c
@@ -67,7 +67,9 @@ $(NAME)			: 	$(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)  $(INC) 
 
 $(BONUS)		:
+	echo $(BONUS) $(WITH_BONUS) $(NAME) $(OBJ_PATHS_INIT) 
 	$(MAKE) WITH_BONUS=1 all
+
 
 clean_local		:									## delete all .o
 	$(RM) -rf $(OBJ_PATH) $(OBJ_BONUS_PATH)
