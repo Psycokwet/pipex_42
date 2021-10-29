@@ -62,6 +62,12 @@ typedef struct s_env {
 	char	**envp;
 }				t_env;
 
+typedef struct s_child_env {
+	char const		*file;
+	char const		*cmd;
+	int				id;
+}				t_child_env;
+
 # define FORK_ERROR 0
 # define FORK_MSG "Fork: "
 # define OPEN_FILE_ERROR 1
