@@ -1,5 +1,17 @@
 # pipex_42
 
+./pipex Makefile "./erter" "../solong_so/so_long_bonus" outfile
+echo $?
+< Makefile ./erter | ../solong_so/so_long_bonus > outfile
+echo $?
+OK
+
+./pipex Makefile "grep :" "/bin/ls " outfile
+echo $?
+< Makefile grep : | /bin/ls > outfile
+echo $?
+OK
+
 ./pipex Makefile "grep :" "wc -l" outfile
 echo $?
 < Makefile grep : | wc -l > outfile

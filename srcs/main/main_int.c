@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/11/01 14:07:23 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:55:08 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ char	*get_cmd_path(char *cmd_name, char **envp)
 	int		i;
 
 	i = 0;
+	if (cmd_name[0] == '/' && access(cmd_name, F_OK) == 0)
+		return (ft_strdup(cmd_name));
+	if ((strncmp(cmd_name, "./", 2) || strncmp(cmd_name, "../", 3)) && access(cmd_name, F_OK) == 0)
+		return (ft_strdup(cmd_name));
 	cmd_end_path = ft_strjoin("/", cmd_name);
 	while (strncmp("PATH", envp[i], 4) != 0)
 		i++;

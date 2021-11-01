@@ -92,6 +92,7 @@ void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_putstr_fd(char *s, int fd);
 char		**ft_split(char const *s, char c);
+char		*ft_strdup(const char *src);
 char		*ft_strjoin(char const *s1, char const *s2);
 size_t		ft_strlcat(char *dst, const char *src, size_t dst_len_mx);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
