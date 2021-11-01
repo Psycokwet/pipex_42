@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/11/01 16:29:14 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/11/01 16:34:07 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main(int argc, char const *argv[], char **envp)
 	(void)argc;
 	(void)argv;
 	if (argc != 5)
-		return (-1);
+		return (0);
 	env = (t_env){};
 	env.status = EXIT_SUCCESS;
 	pipe(env.pipes_handles);
