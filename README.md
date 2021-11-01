@@ -7,6 +7,7 @@ Should wait only 5 second because parralelisme
 echo $?
 < Makefile ./erter | ../solong_so/so_long_bonus > outfile
 echo $?
+OK
 
 ./pipex Makefile "./erter" "./pipex" outfile
 echo $?
