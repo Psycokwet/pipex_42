@@ -31,6 +31,10 @@ OBJ_PATHS_INIT			+= 	$(OBJ_PATH)
 ## No need for a \ on the last line
 HEADERS_FILES				=	main.h
 COMMON_FILES				=	free_array.c \
+								ft_putchar_fd.c \
+								ft_putendl_fd.c \
+								ft_putnbr_fd.c \
+								ft_putstr_fd.c \
 								ft_split.c \
 								ft_strjoin.c \
 								ft_strlcat.c \

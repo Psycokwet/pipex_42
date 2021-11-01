@@ -60,6 +60,7 @@
 typedef struct s_env {
 	int		pipes_handles[2];
 	char	**envp;
+	int		status;
 }				t_env;
 
 typedef struct s_child_env {
@@ -72,9 +73,9 @@ typedef struct s_child_env {
 # define FORK_MSG "Fork: "
 # define OPEN_FILE_ERROR 1
 # define OPEN_FILE_MSG "Error while opening a file."
-# define EXEC_ERROR 2
+# define EXEC_ERROR 127
 # define EXEC_MSG "Error while executing a command."
-# define MAX_ERRORS 3
+# define MAX_ERRORS 128
 
 static char	*g_error_messages[MAX_ERRORS] = {
 	FORK_MSG,
@@ -85,14 +86,18 @@ static char	*g_error_messages[MAX_ERRORS] = {
 # define ID_C1 1
 # define ID_C2 0
 
-void	free_array(char **splitted);
-char	**ft_split(char const *s, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
-size_t	ft_strlcat(char *dst, const char *src, size_t dst_len_mx);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlen(const char *s);
-int		ft_strncmp(const char *s1, const char *s2, size_t len_mx);
-void	exit_error(int err);
-char	*get_cmd_path(char *cmd_name, char **envp);
+void		free_array(char **splitted);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putendl_fd(char *s, int fd);
+void		ft_putnbr_fd(int n, int fd);
+void		ft_putstr_fd(char *s, int fd);
+char		**ft_split(char const *s, char c);
+char		*ft_strjoin(char const *s1, char const *s2);
+size_t		ft_strlcat(char *dst, const char *src, size_t dst_len_mx);
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t		ft_strlen(const char *s);
+int			ft_strncmp(const char *s1, const char *s2, size_t len_mx);
+void		exit_error(int err);
+char		*get_cmd_path(char *cmd_name, char **envp);
 
 #endif

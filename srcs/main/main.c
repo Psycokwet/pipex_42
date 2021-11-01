@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/10/29 16:44:06 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/11/01 11:50:45 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,21 @@ void	exe_cmd(char const *full_cmd_line, t_env *env, int id)
 		exit_error(EXEC_ERROR);
 }
 
-void	start_child(t_child_env c_env, t_env *env,
+int	start_child(t_child_env c_env, t_env *env,
 void (*cmd_prep_fun)(char const*, t_env *env))
 {
 	pid_t	child_pid;
 
 	child_pid = fork();
 	if (child_pid < 0)
-		return ;
-	if (child_pid)
+		return (-1);
+	if (child_pid == 0)
 	{
 		cmd_prep_fun(c_env.file, env);
 		exe_cmd(c_env.cmd, env, c_env.id);
 		exit(0);
 	}
-	waitpid(child_pid, NULL, 0);
+	return (child_pid);
 }
 
 void	child_cmd1(char const *infile, t_env *env)
@@ -74,17 +74,28 @@ void	child_cmd2(char const *outfile, t_env *env)
 int	main(int argc, char const *argv[], char **envp)
 {
 	t_env	env;
+	int		c1_ret;
+	int		c2_ret;
 
 	(void)argc;
 	(void)argv;
 	if (argc != 5)
 		return (-1);
 	env = (t_env){};
+	env.status = EXIT_SUCCESS;
 	pipe(env.pipes_handles);
 	env.envp = envp;
-	start_child((t_child_env){argv[1], argv[2], ID_C1}, &env, &child_cmd1);
-	start_child((t_child_env){argv[4], argv[3], ID_C2}, &env, &child_cmd2);
-	close(env.pipes_handles[ID_C2]);
+	c1_ret = start_child((t_child_env){argv[1], argv[2], ID_C1}, &env,
+			&child_cmd1);
+	c2_ret = start_child((t_child_env){argv[4], argv[3], ID_C2}, &env,
+			&child_cmd2);
+	if (c1_ret > 0)
+		waitpid(c1_ret, &env.status, 0);
 	close(env.pipes_handles[ID_C1]);
-	return (EXIT_SUCCESS);
+	if (c2_ret > 0)
+		waitpid(c2_ret, &env.status, 0);
+	if (WIFEXITED(env.status))
+		env.status = WEXITSTATUS(env.status);
+	close(env.pipes_handles[ID_C2]);
+	return (env.status);
 }
