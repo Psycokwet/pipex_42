@@ -98,6 +98,7 @@ size_t		ft_strlcat(char *dst, const char *src, size_t dst_len_mx);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlen(const char *s);
 int			ft_strncmp(const char *s1, const char *s2, size_t len_mx);
+void		ft_wait(int c1, int c2, t_env *env);
 void		exit_error(int err);
 char		*get_cmd_path(char *cmd_name, char **envp);
 

@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/11/01 14:06:49 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/11/01 16:29:14 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	exe_cmd(char const *full_cmd_line, t_env *env, int id)
 		free(cmd_path);
 	}
 	else
-		ret = 127;
+		ret = 1;
 	if (argv_cmd)
 		free_array(argv_cmd);
 	close(env->pipes_handles[id]);
@@ -94,13 +94,6 @@ int	main(int argc, char const *argv[], char **envp)
 			&child_cmd1);
 	c2_ret = start_child((t_child_env){argv[4], argv[3], ID_C2}, &env,
 			&child_cmd2);
-	if (c1_ret > 0)
-		waitpid(c1_ret, &env.status, 0);
-	close(env.pipes_handles[ID_C1]);
-	if (c2_ret > 0)
-		waitpid(c2_ret, &env.status, 0);
-	if (WIFEXITED(env.status))
-		env.status = WEXITSTATUS(env.status);
-	close(env.pipes_handles[ID_C2]);
+	ft_wait(c1_ret, c2_ret, &env);
 	return (env.status);
 }

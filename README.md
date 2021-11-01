@@ -1,5 +1,8 @@
 # pipex_42
 
+./pipex Makefile "sleep 5" "sleep 5" outfile
+Should wait only 5 second because parralelisme
+
 ./pipex Makefile "./erter" "../solong_so/so_long_bonus" outfile
 echo $?
 < Makefile ./erter | ../solong_so/so_long_bonus > outfile
