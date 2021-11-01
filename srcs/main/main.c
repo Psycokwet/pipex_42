@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/11/01 18:33:51 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/11/01 18:43:19 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	exe_cmd(char const *full_cmd_line, t_env *env, int id)
 		free_array(argv_cmd);
 	close(env->pipes_handles[id]);
 	if (ret < 0)
-		exit_error(EXEC_ERROR);
+		exit_error(EXEC_ERROR, 127);
 	exit(ret);
 }
 
@@ -58,7 +58,7 @@ void	child_cmd1(char const *infile, t_env *env)
 
 	infile_fd = open(infile, O_RDONLY, 0777);
 	if (infile_fd == -1)
-		exit_error(OPEN_FILE_ERROR);
+		exit_error(OPEN_FILE_ERROR, 1);
 	dup2(env->pipes_handles[ID_C1], STDOUT_FILENO);
 	dup2(infile_fd, STDIN_FILENO);
 	close(env->pipes_handles[ID_C2]);
@@ -70,7 +70,7 @@ void	child_cmd2(char const *outfile, t_env *env)
 
 	outfile_fd = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outfile_fd == -1)
-		exit_error(OPEN_FILE_ERROR);
+		exit_error(OPEN_FILE_ERROR, 1);
 	dup2(env->pipes_handles[ID_C2], STDIN_FILENO);
 	dup2(outfile_fd, STDOUT_FILENO);
 	close(env->pipes_handles[ID_C1]);

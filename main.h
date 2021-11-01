@@ -74,9 +74,9 @@ typedef struct s_child_env {
 # define FORK_MSG "Fork: "
 # define OPEN_FILE_ERROR 1
 # define OPEN_FILE_MSG "Error while opening a file."
-# define EXEC_ERROR 127
+# define EXEC_ERROR 2
 # define EXEC_MSG "Error while executing a command."
-# define MAX_ERRORS 128
+# define MAX_ERRORS 3
 
 static char	*g_error_messages[MAX_ERRORS] = {
 	FORK_MSG,
@@ -100,7 +100,7 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlen(const char *s);
 int			ft_strncmp(const char *s1, const char *s2, size_t len_mx);
 void		ft_wait(int c1, int c2, t_env *env);
-void		exit_error(int err);
+void		exit_error(int err, int code);
 char		*get_cmd_path(char *cmd_name, char **envp);
 
 #endif

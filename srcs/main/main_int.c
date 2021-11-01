@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/11/01 18:33:21 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/11/01 18:42:58 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	ft_wait(int c1, int c2, t_env *env)
 	}
 }
 
-void	exit_error(int err)
+void	exit_error(int err, int code)
 {
 	perror(g_error_messages[err]);
-	exit(-err);
+	exit(code);
 }
 
 void	get_cmd_path_int_clean(char **possibles_paths, char **pures_paths,
