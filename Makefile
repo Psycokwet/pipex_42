@@ -10,7 +10,7 @@ OBJ_BONUS_PATH		= bin/bonus/
 MAIN_PATH		= main/
 COMMON_PATH		= common/
 
-CFLAGS		+=	-W -Wall -Wextra -D BUFFER_SIZE=32 -g3 ##-Werror  -pedantic 		## '+=' allow to keep default flags.
+CFLAGS		+=	-W -Wall -Wextra -D BUFFER_SIZE=32 -g3 -Werror  -pedantic 		## '+=' allow to keep default flags.
 
 MAIN_FILES				=	
 ifdef WITH_BONUS
