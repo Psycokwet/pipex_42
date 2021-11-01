@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/11/01 11:50:45 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:06:49 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,19 @@ void	exe_cmd(char const *full_cmd_line, t_env *env, int id)
 
 	argv_cmd = ft_split(full_cmd_line, ' ');
 	cmd_path = get_cmd_path(argv_cmd[0], env->envp);
-	ret = execve(cmd_path, argv_cmd, env->envp);
+	if (cmd_path)
+	{
+		ret = execve(cmd_path, argv_cmd, env->envp);
+		free(cmd_path);
+	}
+	else
+		ret = 127;
 	if (argv_cmd)
 		free_array(argv_cmd);
-	if (cmd_path)
-		free(cmd_path);
 	close(env->pipes_handles[id]);
 	if (ret < 0)
 		exit_error(EXEC_ERROR);
+	exit(ret);
 }
 
 int	start_child(t_child_env c_env, t_env *env,

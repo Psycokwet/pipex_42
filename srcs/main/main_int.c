@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/10/29 11:57:25 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:07:23 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ char	*get_cmd_path_int(char *cmd_end_path, char **possibles_paths)
 			return (cmd_path);
 		i++;
 	}
-	return (cmd_path);
+	if (cmd_path)
+		free(cmd_path);
+	return (NULL);
 }
 
 char	*get_cmd_path(char *cmd_name, char **envp)
