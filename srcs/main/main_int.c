@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/11/01 18:42:58 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/11/01 18:44:49 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_wait(int c1, int c2, t_env *env)
 {
-	int	w_ret = 0;
+	int	w_ret;
 
 	w_ret = waitpid(-1, &env->status, WUNTRACED);
 	if (w_ret == c1)
