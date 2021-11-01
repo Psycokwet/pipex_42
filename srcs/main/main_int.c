@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/11/01 16:30:11 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/11/01 18:33:21 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	ft_wait(int c1, int c2, t_env *env)
 {
-	int	w_ret;
+	int	w_ret = 0;
 
-	w_ret = waitpid(-1, &env->status, 0);
+	w_ret = waitpid(-1, &env->status, WUNTRACED);
 	if (w_ret == c1)
 		close(env->pipes_handles[ID_C1]);
 	if (w_ret == c2)
 	{
-		close(env->pipes_handles[ID_C2]);
 		if (WIFEXITED(env->status))
-			env->status = WEXITSTATUS(env->status);
+			env->exit_value = WEXITSTATUS(env->status);
+		close(env->pipes_handles[ID_C2]);
 	}
 }
 

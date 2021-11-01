@@ -61,6 +61,7 @@ typedef struct s_env {
 	int		pipes_handles[2];
 	char	**envp;
 	int		status;
+	int		exit_value;
 }				t_env;
 
 typedef struct s_child_env {

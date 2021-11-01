@@ -6,7 +6,7 @@
 /*   By: scarboni <scarboni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:54:29 by scarboni          #+#    #+#             */
-/*   Updated: 2021/11/01 16:49:27 by scarboni         ###   ########.fr       */
+/*   Updated: 2021/11/01 18:33:51 by scarboni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int argc, char const *argv[], char **envp)
 	if (argc != 5)
 		return (0);
 	env = (t_env){0};
-	env.status = EXIT_SUCCESS;
+	env.exit_value = EXIT_SUCCESS;
 	pipe(env.pipes_handles);
 	env.envp = envp;
 	c1_ret = start_child((t_child_env){argv[1], argv[2], ID_C1}, &env,
@@ -95,5 +95,6 @@ int	main(int argc, char const *argv[], char **envp)
 	c2_ret = start_child((t_child_env){argv[4], argv[3], ID_C2}, &env,
 			&child_cmd2);
 	ft_wait(c1_ret, c2_ret, &env);
-	return (env.status);
+	ft_wait(c1_ret, c2_ret, &env);
+	return (env.exit_value);
 }
