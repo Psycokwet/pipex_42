@@ -1,5 +1,7 @@
 pipex-tester
-
+pipex
+pipex_bonus
+out
 # Prerequisites
 *.d
 

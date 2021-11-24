@@ -16,12 +16,12 @@ MAIN_FILES				=
 ifdef WITH_BONUS
 	CFLAGS	+= -DBONUS -DIF_BONUS=true
 
-	MAIN_FILES				+=	main_bonus.c
+	MAIN_FILES	+=	main_bonus.c  main_int.c
 	OBJ_PATH	= $(OBJ_BONUS_PATH)
 	NAME	=	$(NAME_BONUS)
 else
 	CFLAGS	+= -DIF_BONUS=false
-	MAIN_FILES				+=	main.c main_int.c
+	MAIN_FILES	+=	main.c main_int.c
 endif
 
 
@@ -82,7 +82,7 @@ clean_local		:									## delete all .o
 clean			: clean_local							## delete all .o
 
 fclean			:	clean_local							## clean + delete executable
-	$(RM) $(NAME) $(BONUS) 
+	$(RM) $(NAME) $(NAME_BONUS) 
 
 re				:	fclean all							## delete all .o and recompile all. Must use when editing a .h
 
